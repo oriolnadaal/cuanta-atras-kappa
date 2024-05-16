@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cuenta Atrás</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+        body {
+            background-image: url('background_image.jpg'); /* Fondo proporcionado */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        #countdown {
+            text-align: center;
+            font-size: 2em;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para el texto */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            color: #ffcc00; /* Color que combina con el fondo */
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown">
+        <h1>KAPPA FUTUR FESTIVAL</h1>
+        <div id="time"></div>
+    </div>
+
+    <script>
+        // Establecer la fecha y hora objetivo
+        var targetDate = new Date("Jul 5, 2024 12:00:00").getTime();
+
+        // Actualizar la cuenta atrás cada segundo
+        var countdownFunction = setInterval(function() {
+
+            // Obtener la fecha y hora actual
+            var now = new Date().getTime();
+
+            // Calcular la diferencia de tiempo entre la fecha objetivo y la fecha actual
+            var distance = targetDate - now;
+
+            // Calcular el tiempo restante en días, horas, minutos y segundos
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Mostrar el resultado en el elemento con id="time"
+            document.getElementById("time").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            // Si la cuenta atrás ha terminado, mostrar un mensaje
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("time").innerHTML = "¡Es 5 de julio!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
